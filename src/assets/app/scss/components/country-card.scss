@@ -1,0 +1,45 @@
+.country-cards {
+  @include breakpoint(large) {
+    min-height: 70vh;
+  }
+  @include breakpoint(xlarge) {
+    min-height: 80vh;
+  }
+  .country {
+    &-flag {
+      img {
+        width: 100%;
+      }
+    }
+    &-name {
+      font-weight: $fw-bold;
+      font-size: rem(18);
+    }
+    &-card {
+      width: 80%;
+      margin: 0 auto;
+      border-radius: rem(5);
+      overflow: hidden;
+      box-shadow: var(--custom-shadow-sm);
+      @include breakpoint(small) {
+        width: 100%;
+        margin: 0;
+      }
+    }
+    &-info {
+      font-size: rem(14);
+      padding: rem(25) rem(20) rem(38) rem(20);
+      background-color: var(--primary-o);
+      color: var(--secondary-o);
+      @include breakpoint(small) {
+        padding: rem(20) rem(15) rem(25) rem(15);
+      }
+      p {
+        margin-bottom: rem(4);
+      }
+      span {
+        color: var(--text-detail);
+      }
+    }
+  }
+}

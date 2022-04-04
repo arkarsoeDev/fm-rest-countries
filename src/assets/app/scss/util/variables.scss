@@ -1,0 +1,40 @@
+// colors
+:root {
+  --darkBlue: hsl(209, 23%, 22%);
+  --bg-darkMode: hsl(207, 26%, 17%);
+  --bg-lightMode: hsl(0, 0%, 98%);
+  --text-darkMode: hsl(0, 0%, 100%);
+  --text-lightMode: hsl(200, 15%, 8%);
+  --input-lightMode: hsl(0, 0%, 52%);
+  --element-lightMode: hsl(0, 0%, 100%);
+
+  --custom-shadow: 0px 0rem 0.2rem 0px rgb(30 27 27 / 30%);
+  --custom-shadow-sm: 0px 0rem 0.3rem 0px rgb(30 27 27 / 10%);
+  --custom-shadow-lg: 0px 0rem 0.5rem 0.2px rgb(30 27 27 / 30%);
+}
+
+// target colors
+body {
+  --primary-o: var(--element-lightMode);
+  --secondary-o: var(--text-lightMode);
+  --input-color: var(--input-lightMode);
+  --text-detail: rgba(0, 0, 0, 0.7);
+}
+
+//fonts
+$Nunito: "Nunito Sans", sans-serif;
+$fw-light: 300;
+$fw-normal: 600;
+$fw-bold: 800;
+
+//border radius
+
+// change variables
+body.dark {
+  --primary-o: var(--darkBlue);
+  --secondary-o: var(--text-darkMode);
+  --text-detail: rgba(255, 255, 255, 0.541);
+  --custom-shadow: 0px 0rem 0.25rem 3px rgb(30 27 27 / 30%);
+  --custom-shadow-sm: 0px 0rem 2rem 1px rgb(30 27 27 / 30%);
+  --input-color: var(--text-darkMode);
+}

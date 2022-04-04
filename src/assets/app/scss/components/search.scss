@@ -1,0 +1,26 @@
+.search {
+  border-radius: rem(5);
+  margin-bottom: rem(35);
+  background-color: var(--primary-o);
+  box-shadow: var(--custom-shadow-sm);
+  @include breakpoint(small) {
+    margin-bottom: 0;
+  }
+  i {
+    color: var(--input-color);
+  }
+  input {
+    font-size: rem(13);
+    background-color: var(--primary-o);
+    color: var(--secondary-o);
+    @include breakpoint(small) {
+      font-size: rem(14);
+    }
+    &:focus-visible {
+      outline: none;
+    }
+    &::placeholder {
+      color: var(--input-color);
+    }
+  }
+}

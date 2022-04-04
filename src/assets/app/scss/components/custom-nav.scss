@@ -1,0 +1,29 @@
+.custom-nav {
+  box-shadow: var(--custom-shadow);
+  background-color: var(--primary-o);
+  &__title {
+    font-size: rem(16);
+    color: var(--secondary-o);
+    @include breakpoint(small) {
+      font-size: rem(18);
+    }
+  }
+
+  .toggle {
+    color: var(--secondary-o);
+    i {
+      font-size: rem(12);
+      @include breakpoint(small) {
+        font-size: rem(14);
+      }
+    }
+
+    span {
+      font-size: rem(12);
+
+      @include breakpoint(small) {
+        font-size: rem(14);
+      }
+    }
+  }
+}
