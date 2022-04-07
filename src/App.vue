@@ -1,8 +1,10 @@
 <template>
-  <header>
-    <Nav></Nav>
-  </header>
-  <router-view />
+  <div class="theme" :class="{ dark: themeDark }">
+    <header>
+      <Nav></Nav>
+    </header>
+    <router-view />
+  </div>
 </template>
 <script>
 import Nav from "@/components/Nav";

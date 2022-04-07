@@ -14,7 +14,7 @@
 }
 
 // target colors
-body {
+.theme {
   --primary-o: var(--element-lightMode);
   --secondary-o: var(--text-lightMode);
   --input-color: var(--input-lightMode);
@@ -30,7 +30,7 @@ $fw-bold: 800;
 //border radius
 
 // change variables
-body.dark {
+.theme.dark {
   --primary-o: var(--darkBlue);
   --secondary-o: var(--text-darkMode);
   --text-detail: rgba(255, 255, 255, 0.541);
