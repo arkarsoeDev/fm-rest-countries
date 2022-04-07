@@ -11,7 +11,8 @@
 
   .toggle {
     color: var(--secondary-o);
-    i {
+    cursor: pointer;
+    .moon-icon {
       font-size: rem(12);
       @include breakpoint(small) {
         font-size: rem(14);
