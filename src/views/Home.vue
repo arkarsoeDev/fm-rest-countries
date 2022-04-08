@@ -1,13 +1,15 @@
 <template>
-  <section>
-    <div class="container-fluid">
-      <div class="container"></div>
-    </div>
-  </section>
+  <main>
+    <CountryCards></CountryCards>
+  </main>
 </template>
 
 <script>
+import CountryCards from "@/components/CountryCards";
 export default {
   name: "Home",
+  components: {
+    CountryCards,
+  },
 };
 </script>
