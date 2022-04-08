@@ -15,9 +15,5 @@ export default createStore({
     },
   },
   modules: {},
-  getters: {
-    getThemeDark: (state) => {
-      return state.themeDark;
-    },
-  },
+  getters: {},
 });

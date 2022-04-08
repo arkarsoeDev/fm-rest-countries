@@ -33,7 +33,7 @@ export default {
   },
   computed: {
     themeDark() {
-      return this.$store.getters.getThemeDark;
+      return this.$store.state.themeDark;
     },
   },
 };
