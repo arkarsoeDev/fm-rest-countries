@@ -6,7 +6,7 @@
   @include breakpoint(small) {
     margin-bottom: 0;
   }
-  i {
+  .glass-icon {
     color: var(--input-color);
   }
   input {
