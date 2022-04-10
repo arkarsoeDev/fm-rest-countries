@@ -5,6 +5,9 @@
   @include breakpoint(xlarge) {
     min-height: 80vh;
   }
+  .cant-find {
+    color: var(--secondary-o);
+  }
   .country {
     &-flag {
       height: rem(140);

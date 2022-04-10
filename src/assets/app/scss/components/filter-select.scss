@@ -14,26 +14,10 @@
 
   .select-selected {
     cursor: pointer;
-  }
 
-  .select-selected:after {
-    content: "\f107";
-    cursor: pointer;
-    position: absolute;
-    font-family: FontAwesome;
-    font-weight: normal;
-    font-style: normal;
-    text-decoration: none;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 24px;
-    width: 15px;
-    height: 15px;
-    line-height: 15px;
-  }
-
-  .select-selected.select-arrow-active:after {
-    content: "\f106";
+    .angle-down-icon {
+      color: var(--secondary-o);
+    }
   }
 
   .select-items div {

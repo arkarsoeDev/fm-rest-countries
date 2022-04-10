@@ -29,20 +29,18 @@ export default {
   },
   computed: {
     hide() {
-      if (this.searchCountry.length > 0) {
-        return this.searchCountry.filter(
-          (country) =>
-            country.name.toLowerCase().replace(/\s/g, "") ===
-            this.countryData.name.toLowerCase().replace(/\s/g, "")
-        ).length > 0
+      if (this.showCountries.length > 0) {
+        return this.showCountries.filter((country) => {
+          return country.name === this.countryData.name;
+        }).length > 0
           ? false
           : true;
       } else {
-        return false;
+        return true;
       }
     },
-    searchCountry() {
-      return this.$store.state.searchCountry;
+    showCountries() {
+      return this.$store.state.showCountries;
     },
     populationComma() {
       return this.countryData.population

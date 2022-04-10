@@ -2,10 +2,10 @@
   <section class="country-cards c-mt mb-5">
     <div class="container">
       <div
-        v-if="searchCountryName.length > 0 && searchCountry.length === 0"
+        v-if="showCountries.length > 0 ? false : true"
         class="row text-center mt-5"
       >
-        <p>
+        <p class="cant-find">
           Sorry! Can't find any country with the name "{{ searchCountryName }}"
         </p>
       </div>
@@ -36,11 +36,11 @@ export default {
     allCountries() {
       return this.$store.state.countries;
     },
-    searchCountry() {
-      return this.$store.state.searchCountry;
-    },
     searchCountryName() {
       return this.$store.state.searchCountryName;
+    },
+    showCountries() {
+      return this.$store.getters.getShowCountries;
     },
   },
 };
