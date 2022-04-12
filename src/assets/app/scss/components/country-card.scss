@@ -1,9 +1,9 @@
 .country-cards {
   @include breakpoint(large) {
-    min-height: 70vh;
+    min-height: 50vh;
   }
   @include breakpoint(xlarge) {
-    min-height: 80vh;
+    min-height: 60vh;
   }
   .cant-find {
     color: var(--secondary-o);
