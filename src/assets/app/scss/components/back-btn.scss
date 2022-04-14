@@ -14,6 +14,10 @@
     color: var(--secondary-o);
   }
 
+  &:focus {
+    box-shadow: none;
+  }
+
   @include breakpoint(small) {
     padding: rem(8) rem(34);
     box-shadow: var(--custom-shadow);
