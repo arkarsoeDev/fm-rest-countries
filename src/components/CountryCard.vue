@@ -14,9 +14,11 @@
           <p>
             Region: <span>{{ countryData.region }}</span>
           </p>
-          <p>
-            Capital: <span>{{ countryData.capital }}</span>
-          </p>
+          <template v-if="countryData.capital"
+            ><p>
+              Capital: <span>{{ countryData.capital }}</span>
+            </p></template
+          >
         </div>
       </div>
     </router-link>

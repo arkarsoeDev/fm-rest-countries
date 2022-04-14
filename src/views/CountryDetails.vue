@@ -45,45 +45,55 @@
                       country.subregion
                     }}</span>
                   </p>
-                  <p>
-                    Capital:
-                    <span class="country-info-data">{{ country.capital }}</span>
-                  </p>
+                  <template v-if="country.capital"
+                    ><p>
+                      Capital:
+                      <span class="country-info-data">{{
+                        country.capital
+                      }}</span>
+                    </p></template
+                  >
                 </div>
                 <div class="col-12 col-md-6">
-                  <p>
-                    Top Level Domain:
-                    <span class="country-info-data"
-                      ><template
-                        v-for="(code, index) in country.topLevelDomain"
-                        :key="index"
-                        ><template v-if="index !== 0">, </template
-                        >{{ code }}</template
-                      >
-                    </span>
-                  </p>
-                  <p>
-                    Currencies:
-                    <span class="country-info-data"
-                      ><template
-                        v-for="(currency, index) in country.currencies"
-                        :key="index"
-                        ><template v-if="index !== 0">, </template
-                        >{{ currency.name }}</template
-                      >
-                    </span>
-                  </p>
-                  <p>
-                    Languages:
-                    <span class="country-info-data"
-                      ><template
-                        v-for="(language, index) in country.languages"
-                        :key="index"
-                        ><template v-if="index !== 0">, </template
-                        >{{ language.name }}</template
-                      >
-                    </span>
-                  </p>
+                  <template v-if="country.topLevelDomain">
+                    <p>
+                      Top Level Domain:
+                      <span class="country-info-data"
+                        ><template
+                          v-for="(code, index) in country.topLevelDomain"
+                          :key="index"
+                          ><template v-if="index !== 0">, </template
+                          >{{ code }}</template
+                        >
+                      </span>
+                    </p>
+                  </template>
+                  <template v-if="country.currencies"
+                    ><p>
+                      Currencies:
+                      <span class="country-info-data"
+                        ><template
+                          v-for="(currency, index) in country.currencies"
+                          :key="index"
+                          ><template v-if="index !== 0">, </template
+                          >{{ currency.name }}</template
+                        >
+                      </span>
+                    </p></template
+                  >
+                  <template v-if="country.languages"
+                    ><p>
+                      Languages:
+                      <span class="country-info-data"
+                        ><template
+                          v-for="(language, index) in country.languages"
+                          :key="index"
+                          ><template v-if="index !== 0">, </template
+                          >{{ language.name }}</template
+                        >
+                      </span>
+                    </p></template
+                  >
                 </div>
               </div>
               <div
