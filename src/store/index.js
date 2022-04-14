@@ -37,13 +37,15 @@ export default createStore({
     changeTheme({ commit }, payload) {
       commit("CHANGE_THEME", payload);
     },
-    fetchCountries({ commit, dispatch }) {
-      return CountrySerivce.getAllData()
-        .then((response) => {
-          commit("SET_COUNTRIES", response.data);
-          dispatch("setShowCountries");
-        })
-        .catch((error) => console.log(error));
+    fetchCountries({ state, commit, dispatch }) {
+      if (!state.countries.length > 0) {
+        return CountrySerivce.getAllData()
+          .then((response) => {
+            commit("SET_COUNTRIES", response.data);
+            dispatch("setShowCountries");
+          })
+          .catch((error) => console.log(error));
+      }
     },
     searchCountry({ state, commit, dispatch, getters }, { newValue }) {
       if (state.searchCountryName !== newValue) {
@@ -110,6 +112,9 @@ export default createStore({
         returnValue = state.countriesByRegion;
       }
       return returnValue;
+    },
+    getCountry: (state) => (name) => {
+      return state.countries.find((country) => country.name === name);
     },
   },
 });

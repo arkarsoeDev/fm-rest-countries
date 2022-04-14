@@ -24,6 +24,9 @@ export default {
       searchTimer: null,
     };
   },
+  created() {
+    this.searchValue = this.searchCountryName;
+  },
   methods: {
     searchCountry() {
       if (this.searchTimer) {
@@ -36,6 +39,11 @@ export default {
         });
       }, 100);
       this.searchTimer = timer;
+    },
+  },
+  computed: {
+    searchCountryName() {
+      return this.$store.state.searchCountryName;
     },
   },
 };

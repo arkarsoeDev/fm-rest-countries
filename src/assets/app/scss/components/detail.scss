@@ -1,14 +1,17 @@
 .detail {
   margin-top: rem(40);
-  margin-bottom: rem(40);
-  @include breakpoint(large) {
-    height: 70vh;
-  }
+  margin-bottom: rem(60);
   @include breakpoint(xlarge) {
-    height: 80vh;
+    min-height: 80vh;
   }
   .country-flag {
     box-shadow: var(--custom-shadow-sm);
+    min-height: rem(250);
+    width: 100%;
+
+    @include breakpoint(small) {
+      min-height: rem(380);
+    }
   }
   .country-info {
     color: var(--secondary-o);
@@ -21,22 +24,22 @@
   }
 
   .border-tags {
-    .tag-group {
-      @include breakpoint(small) {
-        width: 70%;
-      }
-      @include breakpoint(large) {
-        width: 60%;
-      }
-    }
     .border-tag {
+      width: auto;
+    }
+    .border-title {
+      min-width: rem(140);
+    }
+    .badge {
       box-shadow: var(--custom-shadow);
       background-color: var(--primary-o);
       font-weight: $fw-normal;
       font-size: rem(14);
       color: var(--text-detail);
-      padding: rem(7);
+      padding: rem(7) rem(10);
+      min-width: 100px;
       border-radius: rem(2);
+      margin: 0 rem(10) rem(10) 0;
     }
   }
 }

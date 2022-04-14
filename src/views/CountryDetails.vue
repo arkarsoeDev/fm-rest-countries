@@ -1,0 +1,167 @@
+<template>
+  <section v-if="country" class="detail">
+    <div class="container px-4 px-md-0">
+      <div class="row px-4">
+        <router-link class="back-btn-link" :to="{ name: 'Home' }"
+          ><button
+            type="button"
+            class="back-btn btn w-auto d-flex align-items-center"
+          >
+            <font-awesome-icon
+              icon="arrow-left-long"
+              class="back-btn-icon me-1"
+              fixed-width
+            />
+            <span class="ps-1 fw-light">Back</span>
+          </button></router-link
+        >
+      </div>
+      <div class="container">
+        <div class="row gx-3 gx-lg-4 gx-xl-5 align-items-center">
+          <div class="col-12 col-lg-6">
+            <div class="country-flag" :style="flagStyle"></div>
+          </div>
+          <div class="col-12 col-lg-6">
+            <div class="country-info py-4 mt-3 mt-lg-0">
+              <h3 class="country-name mb-4 fw-bold">{{ country.name }}</h3>
+              <div class="row mb-5 mb-lg-3 mb-xl-5">
+                <div class="col-12 col-md-6 mb-5 mb-md-0 mb-xl-0">
+                  <p>
+                    Native Name:<span class="country-info-data">{{
+                      country.nativeName
+                    }}</span>
+                  </p>
+                  <p>
+                    Population:
+                    <span class="country-info-data">{{ populationComma }}</span>
+                  </p>
+                  <p>
+                    Region:
+                    <span class="country-info-data">{{ country.region }}</span>
+                  </p>
+                  <p>
+                    Sub Region:
+                    <span class="country-info-data">{{
+                      country.subregion
+                    }}</span>
+                  </p>
+                  <p>
+                    Capital:
+                    <span class="country-info-data">{{ country.capital }}</span>
+                  </p>
+                </div>
+                <div class="col-12 col-md-6">
+                  <p>
+                    Top Level Domain:
+                    <span class="country-info-data"
+                      ><template
+                        v-for="(code, index) in country.topLevelDomain"
+                        :key="index"
+                        ><template v-if="index !== 0">, </template
+                        >{{ code }}</template
+                      >
+                    </span>
+                  </p>
+                  <p>
+                    Currencies:
+                    <span class="country-info-data"
+                      ><template
+                        v-for="(currency, index) in country.currencies"
+                        :key="index"
+                        ><template v-if="index !== 0">, </template
+                        >{{ currency.name }}</template
+                      >
+                    </span>
+                  </p>
+                  <p>
+                    Languages:
+                    <span class="country-info-data"
+                      ><template
+                        v-for="(language, index) in country.languages"
+                        :key="index"
+                        ><template v-if="index !== 0">, </template
+                        >{{ language.name }}</template
+                      >
+                    </span>
+                  </p>
+                </div>
+              </div>
+              <div
+                v-if="borderCountries.length > 0"
+                class="border-tags d-sm-flex"
+              >
+                <p class="mb-3 border-title d-block d-sm-inline-block">
+                  Border Countries:
+                </p>
+                <div class="tag-group">
+                  <template
+                    v-for="(data, index) in borderCountries"
+                    :key="index"
+                    ><router-link
+                      class="country-link"
+                      :to="{
+                        name: 'CountryDetails',
+                        params: { name: data.name },
+                      }"
+                      ><div class="border-tag d-inline-block">
+                        <span class="badge">{{ data.name }}</span>
+                      </div></router-link
+                    ></template
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+
+<script>
+export default {
+  name: "CountryDetails",
+  props: ["name"],
+  // I didn't fetch only one country.If I do, I also need to fetch some countries for border countries
+  // so I think fetching all countries might be better option.
+  created() {
+    this.$store.dispatch("fetchCountries").catch(() => {
+      console.log("error");
+    });
+  },
+  computed: {
+    country() {
+      return this.$store.getters.getCountry(this.name);
+    },
+    countries() {
+      return this.$store.state.countries;
+    },
+    borderCountries() {
+      if (this.country.borders) {
+        return this.countries.filter((data) => {
+          return this.country.borders.find((border) => {
+            return data.alpha3Code === border;
+          });
+        });
+      } else {
+        return [];
+      }
+    },
+    populationComma() {
+      return this.country.population
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    },
+    flagStyle() {
+      return {
+        backgroundImage: `url(${this.country.flag})`,
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+      };
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped></style>

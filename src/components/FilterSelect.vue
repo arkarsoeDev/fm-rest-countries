@@ -42,6 +42,11 @@ export default {
       selectedRegion: "Filter by region",
     };
   },
+  created() {
+    if (this.region) {
+      this.selectedRegion = this.region;
+    }
+  },
   methods: {
     setRegion(region) {
       this.selectedRegion = region;
@@ -51,6 +56,11 @@ export default {
     },
     filterToggle() {
       this.filterOpen = !this.filterOpen;
+    },
+  },
+  computed: {
+    region() {
+      return this.$store.state.region;
     },
   },
 };
