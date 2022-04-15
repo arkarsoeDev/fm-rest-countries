@@ -2,19 +2,17 @@
   <section v-if="country" class="detail">
     <div class="container px-4 px-md-0">
       <div class="row px-4">
-        <router-link class="back-btn-link" :to="{ name: 'Home' }"
-          ><button
-            type="button"
-            class="back-btn btn w-auto d-flex align-items-center"
-          >
-            <font-awesome-icon
-              icon="arrow-left-long"
-              class="back-btn-icon me-1"
-              fixed-width
-            />
-            <span class="ps-1 fw-light">Back</span>
-          </button></router-link
+        <router-link
+          class="back-btn btn w-auto d-flex align-items-center"
+          :to="{ name: 'Home' }"
         >
+          <font-awesome-icon
+            icon="arrow-left-long"
+            class="back-btn-icon me-1"
+            fixed-width
+          />
+          <span class="ps-1 fw-light">Back</span>
+        </router-link>
       </div>
       <div class="container">
         <div class="row gx-3 gx-lg-4 gx-xl-5 align-items-center">

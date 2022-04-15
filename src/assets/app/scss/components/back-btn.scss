@@ -5,17 +5,14 @@
   background-color: var(--primary-o);
   box-shadow: var(--custom-shadow-lg);
   color: var(--secondary-o);
-  &-link {
-    text-decoration: none;
-    padding: 0;
-  }
+  text-decoration: none;
 
   &:hover {
     color: var(--secondary-o);
   }
 
   &:focus {
-    box-shadow: none;
+    box-shadow: var(--custom-shadow-lg);
   }
 
   @include breakpoint(small) {
