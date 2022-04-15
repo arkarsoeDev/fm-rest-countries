@@ -1,0 +1,41 @@
+.skeleton-detail {
+  .country-flag {
+    background-color: var(--skeleton-bg);
+    animation: pulse-bg 1s infinite;
+  }
+  .country-info {
+    .country-name {
+      width: 200px;
+      height: 40px;
+      background-color: var(--skeleton-bg);
+      animation: pulse-bg 1s infinite;
+    }
+    p {
+      width: 200px;
+      height: 20px;
+      background-color: var(--skeleton-bg);
+      animation: pulse-bg 1s infinite;
+    }
+    .country-info-data {
+      width: 200px;
+      height: 20px;
+      background-color: var(--skeleton-bg);
+      animation: pulse-bg 1s infinite;
+    }
+  }
+
+  .border-tags {
+    .border-tag {
+      width: 100px;
+      height: 20px;
+      background-color: var(--skeleton-bg);
+      animation: pulse-bg 1s infinite;
+      margin-right: 10px;
+    }
+    .border-title {
+      background-color: var(--skeleton-bg);
+      margin-right: 10px;
+      animation: pulse-bg 1s infinite;
+    }
+  }
+}

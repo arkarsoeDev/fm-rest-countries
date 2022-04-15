@@ -2,6 +2,7 @@ import { createStore } from "vuex";
 import CountrySerivce from "@/services/CountryService.js";
 export default createStore({
   state: {
+    loading: false,
     themeDark: false,
     countries: [],
     searchCountry: [],
@@ -32,6 +33,9 @@ export default createStore({
     SET_SHOW_COUNTRIES(state, value) {
       state.showCountries = value;
     },
+    SET_LOADING(state, value) {
+      state.loading = value;
+    },
   },
   actions: {
     changeTheme({ commit }, payload) {
@@ -39,12 +43,15 @@ export default createStore({
     },
     fetchCountries({ state, commit, dispatch }) {
       if (!state.countries.length > 0) {
+        commit("SET_LOADING", true);
         return CountrySerivce.getAllData()
           .then((response) => {
             commit("SET_COUNTRIES", response.data);
             dispatch("setShowCountries");
+            commit("SET_LOADING", false);
           })
           .catch((error) => {
+            commit("SET_LOADING", false);
             throw error;
           });
       }

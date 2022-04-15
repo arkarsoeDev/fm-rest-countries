@@ -19,6 +19,7 @@
   --secondary-o: var(--text-lightMode);
   --input-color: var(--input-lightMode);
   --text-detail: rgba(0, 0, 0, 0.7);
+  --skeleton-bg: hsl(0, 0%, 91%);
 }
 
 //fonts
@@ -37,4 +38,5 @@ $fw-bold: 800;
   --custom-shadow: 0px 0rem 0.25rem 3px rgb(30 27 27 / 30%);
   --custom-shadow-sm: 0px 0rem 2rem 1px rgb(30 27 27 / 30%);
   --input-color: var(--text-darkMode);
+  --skeleton-bg: hsl(203, 27%, 10%);
 }

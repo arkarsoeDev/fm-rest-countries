@@ -1,0 +1,30 @@
+.skeleton-country-cards {
+  @include breakpoint(large) {
+    min-height: 50vh;
+  }
+  @include breakpoint(xlarge) {
+    min-height: 60vh;
+  }
+  .skeleton-country-card {
+    .country {
+      &-flag {
+        background-color: var(--skeleton-bg);
+        animation: pulse-bg 1s infinite;
+      }
+      &-name {
+        width: 150px;
+        height: 20px;
+        background-color: var(--skeleton-bg);
+        animation: pulse-bg 1s infinite;
+      }
+      &-info {
+        p {
+          width: 120px;
+          height: 18px;
+          background-color: var(--skeleton-bg);
+          animation: pulse-bg 1s infinite;
+        }
+      }
+    }
+  }
+}
