@@ -44,7 +44,9 @@ export default createStore({
             commit("SET_COUNTRIES", response.data);
             dispatch("setShowCountries");
           })
-          .catch((error) => console.log(error));
+          .catch((error) => {
+            throw error;
+          });
       }
     },
     searchCountry({ state, commit, dispatch, getters }, { newValue }) {

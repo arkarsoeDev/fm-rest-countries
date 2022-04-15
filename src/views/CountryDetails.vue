@@ -135,9 +135,19 @@ export default {
   // I didn't fetch only one country.If I do, I also need to fetch some countries for border countries
   // so I think fetching all countries might be better option.
   created() {
-    this.$store.dispatch("fetchCountries").catch(() => {
-      console.log("error");
-    });
+    this.$store
+      .dispatch("fetchCountries")
+      .then(() => {
+        if (!this.country) {
+          this.$router.push({
+            name: "404Resource",
+            params: { resource: "country" },
+          });
+        }
+      })
+      .catch(() => {
+        this.$router.push({ name: "NetworkError" });
+      });
   },
   computed: {
     country() {

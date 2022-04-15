@@ -1,0 +1,22 @@
+.error-display {
+  min-height: 75vh;
+  color: var(--secondary-o);
+
+  h1 {
+    font-size: rem(24);
+
+    @include breakpoint(medium) {
+      font-size: rem(27);
+    }
+  }
+
+  p,
+  a {
+    font-size: rem(20);
+    font-weight: $font-weight-light;
+
+    @include breakpoint(medium) {
+      font-size: rem(24);
+    }
+  }
+}

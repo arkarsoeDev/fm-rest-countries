@@ -28,8 +28,8 @@ export default {
     CountryCard,
   },
   created() {
-    this.$store.dispatch("fetchCountries").catch((error) => {
-      console.log(error);
+    this.$store.dispatch("fetchCountries").catch(() => {
+      this.$router.push({ name: "NetworkError" });
     });
   },
   computed: {
