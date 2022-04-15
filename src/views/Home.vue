@@ -1,8 +1,6 @@
 <template>
-  <main>
-    <SearchRow></SearchRow>
-    <CountryCards></CountryCards>
-  </main>
+  <SearchRow></SearchRow>
+  <CountryCards></CountryCards>
 </template>
 
 <script>
