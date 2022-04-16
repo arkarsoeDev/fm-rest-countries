@@ -1,6 +1,6 @@
 <template>
   <section class="country-cards c-mt mb-5">
-    <div class="container">
+    <div class="container overflow-hidden">
       <div
         v-if="showCountries.length > 0 ? false : true"
         class="row text-center mt-5"
