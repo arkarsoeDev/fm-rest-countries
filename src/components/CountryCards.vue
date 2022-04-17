@@ -11,7 +11,7 @@
       </div>
       <div v-else class="row g-3 g-xl-4">
         <CountryCard
-          v-for="(country, index) in allCountries"
+          v-for="(country, index) in showCountries"
           :key="index"
           :countryData="country"
         ></CountryCard>
@@ -33,9 +33,6 @@ export default {
     });
   },
   computed: {
-    allCountries() {
-      return this.$store.state.countries;
-    },
     searchCountryName() {
       return this.$store.state.searchCountryName;
     },

@@ -1,5 +1,5 @@
 <template>
-  <div :class="{ 'd-none': hide }" class="col-12 col-sm-6 col-md-4 col-lg-3">
+  <div class="col-12 col-sm-6 col-md-4 col-lg-3">
     <router-link
       class="country-link"
       :to="{ name: 'CountryDetails', params: { name: countryData.name } }"
@@ -35,20 +35,6 @@ export default {
     },
   },
   computed: {
-    hide() {
-      if (this.showCountries.length > 0) {
-        return this.showCountries.filter((country) => {
-          return country.name === this.countryData.name;
-        }).length > 0
-          ? false
-          : true;
-      } else {
-        return true;
-      }
-    },
-    showCountries() {
-      return this.$store.state.showCountries;
-    },
     populationComma() {
       return this.countryData.population
         .toString()
