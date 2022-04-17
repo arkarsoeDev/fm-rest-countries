@@ -1,4 +1,7 @@
 .country-cards {
+  .container {
+    padding-top: rem(10);
+  }
   @include breakpoint(large) {
     min-height: 50vh;
   }
@@ -28,9 +31,19 @@
       overflow: hidden;
       background-color: var(--primary-o);
       box-shadow: var(--custom-shadow-sm);
+      transition: all 0.3s;
       @include breakpoint(small) {
         width: 100%;
         margin: 0;
+      }
+
+      &:hover {
+        transform: translate(-5px, -10px);
+        box-shadow: 5px 5px 0.2rem 0px rgb(30 27 27 / 30%);
+      }
+
+      &:active {
+        animation: bounce 0.3s ease-in-out;
       }
     }
     &-info {

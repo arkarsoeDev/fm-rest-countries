@@ -17,6 +17,10 @@
 
     .angle-down-icon {
       color: var(--secondary-o);
+      transition: all 0.3s;
+      &.rotate180 {
+        transform: rotate(180deg);
+      }
     }
   }
 
@@ -42,6 +46,7 @@
     left: 0;
     right: 0;
     z-index: 99;
+    transform: scaleY(0);
   }
 
   .select-hide {

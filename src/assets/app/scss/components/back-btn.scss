@@ -6,9 +6,14 @@
   box-shadow: var(--custom-shadow-lg);
   color: var(--secondary-o);
   text-decoration: none;
+  transform: scale(1);
 
   &:hover {
     color: var(--secondary-o);
+  }
+
+  &:active {
+    animation: bounce 0.5s ease-in-out;
   }
 
   &:focus {

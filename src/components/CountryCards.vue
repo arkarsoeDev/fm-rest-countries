@@ -12,6 +12,7 @@
       <div v-else class="row g-3 g-xl-4">
         <CountryCard
           v-for="(country, index) in showCountries"
+          class="animate-country-card"
           :key="index"
           :countryData="country"
         ></CountryCard>
@@ -21,6 +22,7 @@
 </template>
 
 <script>
+import gsap from "gsap";
 import CountryCard from "@/components/CountryCard";
 export default {
   name: "CountryCards",
@@ -31,6 +33,46 @@ export default {
     this.$store.dispatch("fetchCountries").catch(() => {
       this.$router.push({ name: "NetworkError" });
     });
+  },
+  mounted() {
+    if (this.showCountries.length > 0) {
+      gsap.fromTo(
+        ".animate-country-card",
+        {
+          opacity: 0,
+          scale: 0,
+          y: 200,
+        },
+        {
+          duration: 0.5,
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          ease: "power1",
+          stagger: 0.1,
+        }
+      );
+    }
+  },
+  updated() {
+    if (this.showCountries.length > 0) {
+      gsap.fromTo(
+        ".animate-country-card",
+        {
+          opacity: 0,
+          scale: 0,
+          y: 200,
+        },
+        {
+          duration: 0.5,
+          opacity: 1,
+          scale: 1,
+          y: 0,
+          ease: "power1",
+          stagger: 0.1,
+        }
+      );
+    }
   },
   computed: {
     searchCountryName() {
