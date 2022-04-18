@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-dark custom-nav py-4 py-sm-3">
     <div class="container">
-      <span class="custom-nav__title mb-0 fw-bold">Where in the world?</span>
+      <span class="custom-nav-title mb-0 fw-bold">Where in the world?</span>
       <div @click="changeTheme" class="toggle d-flex align-items-center">
         <span v-if="themeDark">
           <font-awesome-icon

@@ -1,7 +1,7 @@
 .custom-nav {
   box-shadow: var(--custom-shadow);
   background-color: var(--primary-o);
-  &__title {
+  &-title {
     font-size: rem(16);
     color: var(--secondary-o);
     @include breakpoint(small) {
