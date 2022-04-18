@@ -1,7 +1,11 @@
 <template>
   <nav class="navbar navbar-dark custom-nav py-4 py-sm-3">
     <div class="container">
-      <span class="custom-nav-title mb-0 fw-bold">Where in the world?</span>
+      <router-link
+        class="custom-nav-title mb-0 fw-bold text-decoration-none"
+        :to="{ name: 'Home' }"
+        >Where in the world?</router-link
+      >
       <div @click="changeTheme" class="toggle d-flex align-items-center">
         <span v-if="themeDark">
           <font-awesome-icon

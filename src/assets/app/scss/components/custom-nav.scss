@@ -7,6 +7,14 @@
     @include breakpoint(small) {
       font-size: rem(18);
     }
+
+    &:hover {
+      color: var(--secondary-o);
+    }
+
+    &:focus-visible {
+      outline: none;
+    }
   }
 
   .toggle {
