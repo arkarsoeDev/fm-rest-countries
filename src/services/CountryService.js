@@ -1,4 +1,4 @@
-import axios from "axios";
+const axios = require("axios").default;
 
 const apiClient = axios.create({
   baseURL: "https://restcountries.com/v2",
