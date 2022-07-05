@@ -13,7 +13,7 @@
     <div
       class="select-selected d-flex align-items-center justify-content-between w-100"
     >
-      <p>{{ selectedRegion }}</p>
+      <p>{{ region ? region : "Filter by region" }}</p>
       <font-awesome-icon
         :icon="['fas', 'angle-down']"
         class="angle-down-icon"
@@ -39,15 +39,9 @@ export default {
   name: "FilterSelect",
   data() {
     return {
-      regions: ["Africa", "Americas", "Asia", "Europe", "Oceania"],
+      regions: ["All", "Africa", "Americas", "Asia", "Europe", "Oceania"],
       filterOpen: false,
-      selectedRegion: "Filter by region",
     };
-  },
-  created() {
-    if (this.region) {
-      this.selectedRegion = this.region;
-    }
   },
   watch: {
     filterOpen(newValue) {
@@ -82,10 +76,24 @@ export default {
   },
   methods: {
     setRegion(region) {
-      this.selectedRegion = region;
-      this.$store.dispatch("setRegion", {
-        region: region,
-      });
+      this.$store.dispatch("setSearchError", false);
+      if (region === "All") {
+        this.$store.dispatch("fetchCountries", true).catch((error) => {
+          if (error.code === "ERR_NETWORK") {
+            this.$router.push({ name: "NetworkError" });
+          }
+        });
+      } else {
+        this.$store
+          .dispatch("setRegion", {
+            region: region,
+          })
+          .catch((error) => {
+            if (error.code === "ERR_NETWORK") {
+              this.$router.push({ name: "NetworkError" });
+            }
+          });
+      }
     },
     filterToggle() {
       this.filterOpen = !this.filterOpen;

@@ -49,7 +49,6 @@
     &-info {
       font-size: rem(14);
       padding: rem(25) rem(20) 0 rem(20);
-      background-color: var(--primary-o);
       color: var(--secondary-o);
       @include breakpoint(small) {
         padding: rem(20) rem(15) rem(25) rem(15);

@@ -1,6 +1,6 @@
 <template>
   <template v-if="!loading">
-    <CountryDetailsData :country="this.country"></CountryDetailsData>
+    <CountryDetailsData :country="currentCountry"></CountryDetailsData>
   </template>
   <template v-if="loading"
     ><SkeletonCountryDetails></SkeletonCountryDetails
@@ -15,30 +15,71 @@ export default {
     SkeletonCountryDetails,
     CountryDetailsData,
   },
-  props: ["name"],
-  // I didn't fetch only one country.If I do, I also need to fetch some countries for border countries
-  // so I think fetching all countries might be better option.
+  data() {
+    return {
+      loading: false,
+    };
+  },
   created() {
-    this.$store
-      .dispatch("fetchCountries")
-      .then(() => {
-        if (!this.country) {
-          this.$router.push({
-            name: "404Resource",
-            params: { resource: "country" },
-          });
-        }
-      })
-      .catch(() => {
-        this.$router.push({ name: "NetworkError" });
+    if (this.$route.params.name) {
+      let name = this.$route.params.name;
+      this.fetchCountry(name);
+    } else {
+      this.$router.push({
+        name: "404Resource",
+        params: { resource: "country" },
       });
+    }
+  },
+  beforeRouteUpdate(to) {
+    if (to.params.name) {
+      let name = to.params.name;
+      this.fetchCountry(name);
+    } else {
+      this.$router.push({
+        name: "404Resource",
+        params: { resource: "country" },
+      });
+    }
+  },
+  methods: {
+    fetchCountry(name) {
+      this.loading = true;
+      this.$store
+        .dispatch("fetchCountry", name)
+        .then(() => {
+          if (!this.currentCountry) {
+            this.$router.push({
+              name: "404Resource",
+              params: { resource: "country" },
+            });
+            this.loading = false;
+          } else if (this.currentCountry.borders) {
+            this.$store
+              .dispatch("fetchCountryByCode", [
+                this.currentCountry.borders,
+                "name",
+              ])
+              .then(() => {
+                this.loading = false;
+              })
+              .catch(() => {
+                this.$router.push({ name: "NetworkError" });
+                this.loading = false;
+              });
+          } else {
+            this.loading = false;
+          }
+        })
+        .catch(() => {
+          this.$router.push({ name: "NetworkError" });
+          this.loading = false;
+        });
+    },
   },
   computed: {
-    country() {
-      return this.$store.getters.getCountry(this.name);
-    },
-    loading() {
-      return this.$store.state.loading;
+    currentCountry() {
+      return this.$store.state.currentCountry[0];
     },
   },
 };

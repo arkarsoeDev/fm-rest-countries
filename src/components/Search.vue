@@ -5,13 +5,14 @@
       class="glass-icon me-4 me-sm-3"
       fixed-width
     />
-    <input
-      type="text"
-      class="border-0 w-100"
-      v-model="searchValue"
-      @input="searchCountry"
-      placeholder="Search for a country..."
-    />
+    <form action="" @submit.prevent="searchCountry" class="w-100">
+      <input
+        type="text"
+        class="border-0 w-100"
+        v-model="searchValue"
+        placeholder="Search for a country..."
+      />
+    </form>
   </div>
 </template>
 
@@ -21,24 +22,37 @@ export default {
   data() {
     return {
       searchValue: "",
-      searchTimer: null,
     };
   },
   created() {
     this.searchValue = this.searchCountryName;
   },
+  watch: {
+    searchCountryName(newValue) {
+      this.searchValue = newValue;
+    },
+  },
   methods: {
     searchCountry() {
-      if (this.searchTimer) {
-        clearTimeout(this.searchTimer);
+      if (
+        this.searchValue !== "" &&
+        this.searchValue !== this.searchCountryName
+      ) {
+        this.$store
+          .dispatch("searchCountry", this.searchValue)
+          .then(() => {
+            this.$store.dispatch("setSearchError", false);
+          })
+          .catch((error) => {
+            this.$store.dispatch("setSearchError", false);
+            if (error.response.status === 500) {
+              this.$store.dispatch("setSearchError", true);
+            }
+            if (error.code === "ERR_NETWORK") {
+              this.$router.push({ name: "NetworkError" });
+            }
+          });
       }
-
-      let timer = setTimeout(() => {
-        this.$store.dispatch("searchCountry", {
-          newValue: this.searchValue,
-        });
-      }, 100);
-      this.searchTimer = timer;
     },
   },
   computed: {

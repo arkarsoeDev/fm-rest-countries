@@ -12,7 +12,6 @@ const routes = [
   },
   {
     path: "/countries/:name",
-    props: true,
     name: "CountryDetails",
     component: CountryDetails,
   },

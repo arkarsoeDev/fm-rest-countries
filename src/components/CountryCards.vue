@@ -1,17 +1,14 @@
 <template>
   <section class="country-cards c-mt mb-5">
     <div class="container overflow-hidden">
-      <div
-        v-if="showCountries.length > 0 ? false : true"
-        class="row text-center mt-5"
-      >
+      <div v-if="searchError" class="row text-center mt-5">
         <p class="cant-find">
           Sorry! Can't find any country with the name "{{ searchCountryName }}"
         </p>
       </div>
       <div v-else class="row g-3 g-xl-4">
         <CountryCard
-          v-for="(country, index) in showCountries"
+          v-for="(country, index) in countries"
           class="animate-country-card"
           :key="index"
           :countryData="country"
@@ -35,7 +32,7 @@ export default {
     });
   },
   mounted() {
-    if (this.showCountries.length > 0) {
+    if (this.countries.length > 0 && !this.searchError) {
       gsap.fromTo(
         ".animate-country-card",
         {
@@ -55,7 +52,7 @@ export default {
     }
   },
   updated() {
-    if (this.showCountries.length > 0) {
+    if (this.countries.length > 0 && !this.searchError) {
       gsap.fromTo(
         ".animate-country-card",
         {
@@ -78,8 +75,11 @@ export default {
     searchCountryName() {
       return this.$store.state.searchCountryName;
     },
-    showCountries() {
-      return this.$store.getters.getShowCountries;
+    countries() {
+      return this.$store.state.countries;
+    },
+    searchError() {
+      return this.$store.state.searchError;
     },
   },
 };

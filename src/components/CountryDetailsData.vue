@@ -21,15 +21,17 @@
           </div>
           <div class="col-12 col-lg-6">
             <div class="country-info py-4 mt-3 mt-lg-0">
-              <h3 class="country-name mb-4 fw-bold">{{ country.name }}</h3>
+              <h3 class="country-name mb-4 fw-bold">
+                {{ country.name.official }}
+              </h3>
               <div class="row mb-5 mb-lg-3 mb-xl-5">
                 <div
                   class="col-12 col-md-6 mb-5 mb-md-0 mb-xl-0 animate-country-data"
                 >
                   <p>
-                    Native Name:<span class="country-info-data">{{
-                      country.nativeName
-                    }}</span>
+                    Native Name:<span class="country-info-data">
+                      {{ country.name.common }}</span
+                    >
                   </p>
                   <p>
                     Population:
@@ -49,18 +51,18 @@
                     ><p>
                       Capital:
                       <span class="country-info-data">{{
-                        country.capital
+                        country.capital[0]
                       }}</span>
                     </p></template
                   >
                 </div>
                 <div class="col-12 col-md-6 animate-country-data">
-                  <template v-if="country.topLevelDomain">
+                  <template v-if="country.tld">
                     <p>
                       Top Level Domain:
                       <span class="country-info-data"
                         ><template
-                          v-for="(code, index) in country.topLevelDomain"
+                          v-for="(code, index) in country.tld"
                           :key="index"
                           ><template v-if="index !== 0">, </template
                           >{{ code }}</template
@@ -75,7 +77,9 @@
                         ><template
                           v-for="(currency, index) in country.currencies"
                           :key="index"
-                          ><template v-if="index !== 0">, </template
+                          ><template
+                            v-if="Object.keys(country.currencies)[0] !== index"
+                            >, </template
                           >{{ currency.name }}</template
                         >
                       </span>
@@ -88,8 +92,10 @@
                         ><template
                           v-for="(language, index) in country.languages"
                           :key="index"
-                          ><template v-if="index !== 0">, </template
-                          >{{ language.name }}</template
+                          ><template
+                            v-if="Object.keys(country.languages)[0] !== index"
+                            >, </template
+                          >{{ language }}</template
                         >
                       </span>
                     </p></template
@@ -111,10 +117,10 @@
                       class="country-link"
                       :to="{
                         name: 'CountryDetails',
-                        params: { name: data.name },
+                        params: { name: data.name.common },
                       }"
                       ><div class="border-tag d-inline-block">
-                        <span class="badge">{{ data.name }}</span>
+                        <span class="badge">{{ data.name.common }}</span>
                       </div></router-link
                     ></template
                   >
@@ -202,19 +208,8 @@ export default {
     }
   },
   computed: {
-    countries() {
-      return this.$store.state.countries;
-    },
     borderCountries() {
-      if (this.country.borders) {
-        return this.countries.filter((data) => {
-          return this.country.borders.find((border) => {
-            return data.alpha3Code === border;
-          });
-        });
-      } else {
-        return [];
-      }
+      return this.$store.state.borderCountries;
     },
     populationComma() {
       return this.country.population
@@ -223,7 +218,7 @@ export default {
     },
     flagStyle() {
       return {
-        backgroundImage: `url(${this.country.flag})`,
+        backgroundImage: `url(${this.country.flags.png})`,
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
         backgroundSize: "cover",
