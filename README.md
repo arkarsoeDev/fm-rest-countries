@@ -68,7 +68,7 @@ For Mobile
 ### Links
 
 - Solution URL: [rest-countries/github](https://github.com/arkarsoeDev/fm-rest-countries)
-- Live Site URL: [rest-countries.onrender.com](https://rest-countries.onrender.com/)
+- Live Site URL: [restcountries.onrender.com](https://restcountries.onrender.com/)
 
 ## My process
 
